@@ -4,6 +4,16 @@ import (
 	"strings"
 )
 
+// Split returns the domain-authority and name of an NSID.
+func Split(value string) (domainAuthority string, name string) {
+	var domainAuthorityParts []string
+	domainAuthorityParts, name, _ = split(value)
+
+	domainAuthority = strings.Join(domainAuthorityParts, ".")
+
+	return domainAuthority, name
+}
+
 func split(value string) (domainAuthority []string, name string, numSegments int) {
 	var parts []string = strings.Split(value, ".")
 

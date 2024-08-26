@@ -4,10 +4,9 @@ import (
 	"strings"
 )
 
-// Normalize return the normalized for of an NSID.
+// Normalize returns the normalized form of an NSID.
 //
 // Normalize does NOT validate the NSID.
-//
 // To validate, call [Validate].
 func Normalize(value string) string {
 	var val NSID = NSID(value)

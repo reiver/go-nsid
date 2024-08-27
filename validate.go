@@ -9,6 +9,10 @@ import (
 // Validate returns an error if the NSID is invalid.
 // It returns nil if the NSID is valid.
 func Validate(value string) error {
+	if "" == value {
+		return errEmptyNSID
+	}
+
 	// "Overall NSID:" "must contain only ASCII characters"
 	for charIndex, char := range value {
 		if 127 < char {

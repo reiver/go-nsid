@@ -8,6 +8,9 @@ import (
 
 // Validate returns an error if the NSID is invalid.
 // It returns nil if the NSID is valid.
+//
+// The validation rules for an NSID are defined here:
+// https://atproto.com/specs/nsid
 func Validate(value string) error {
 	if "" == value {
 		return errEmptyNSID
@@ -29,12 +32,12 @@ func Validate(value string) error {
 
 	// "Overall NSID:" "can have a maximum total length of 317 characters"
 	{
-		const atLeast = 317
+		const atMost = 317
 
 		var length int = utf8.RuneCountInString(value)
 
-		if atLeast < length {
-			return erorr.Errorf("nsid: nsid (%q) should have at least %d characters but actually has %d", value, atLeast, length)
+		if atMost < length {
+			return erorr.Errorf("nsid: nsid (%q) should have at most %d characters but actually has %d", value, atMost, length)
 		}
 	}
 

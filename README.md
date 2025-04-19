@@ -1,6 +1,9 @@
 # go-nsid
 
-Package **nsid** provides an implementation of **BlueSky**'s **AT-Protocol**'s NSID, for the Go programming language.
+Package **nsid** provides an implementation of **BlueSky**'s **AT-Protocol**'s NSID (Namespaced Identifier), for the Go programming language.
+
+NSIDs are used by the Bluesky network and its AT-protocol, and are defined at:
+https://atproto.com/specs/nsid
 
 ## Documention
 

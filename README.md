@@ -13,7 +13,10 @@ Online documentation, which includes examples, can be found at: http://godoc.org
 
 ## NSID
 
-In plain language, an NSID (Namespaced Identifier) is a combination of **Internet domain-name** and a **name**.
+In plain language, an NSID (Namespaced Identifier) is a combination of **Internet domain-name** (such as `example.com`) and a **name** (such as `fooBar`).
+
+The NSID (Namespaced Identifier) calls the **Internet domain-name** part the **domain-authority**.
+Although, in an NSID the **Internet domain-name** (such as `example.com`) is written in reverse-order (such as `com.example`) for the **domain-authority**.
 
 ### NSID Example 1
 

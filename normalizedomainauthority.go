@@ -10,6 +10,8 @@ package nsid
 //
 // An example of a non-normalized NSID domain-authority would be "COM.Example".
 // Normalizing that non-normalized NSID domain-authority would result in "com.example".
+//
+// Note that if you want to normalize a whole NSID rather than just a domain-authority, then instead use [Normalize].
 func NormalizeDomainAuthority(value string) string {
 	const lenbuffer int = 256
 	var buffer [lenbuffer]byte

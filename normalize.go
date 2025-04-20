@@ -9,13 +9,18 @@ import (
 // Normalize does NOT validate the NSID.
 // To validate, call [Validate].
 func Normalize(value string) string {
-	var val NSID = NSID(value)
 
-	domainAuthority, name := val.Split()
+	var name string
+	var domainAuthorityParts []string
+	domainAuthorityParts, name, _ = split(value)
+	var domainAuthority string = strings.Join(domainAuthorityParts, ".")
 
 	domainAuthority = NormalizeDomainAuthority(domainAuthority)
 
-	var str string = strings.Join([]string{domainAuthority, name}, ".")
+	var str string = domainAuthority
+	if "" != name {
+		str = strings.Join([]string{domainAuthority, name}, ".")
+	}
 
 	return str
 }

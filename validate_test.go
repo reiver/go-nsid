@@ -93,6 +93,119 @@ func TestValidate(t *testing.T) {
 
 
 		{
+			Value: "-.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("-") of domain-authority ("-.example") of nsid ("-.example.abc") cannot begin with hyphen ('-')`,
+		},
+		{
+			Value: "-com.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("-com") of domain-authority ("-com.example") of nsid ("-com.example.abc") cannot begin with hyphen ('-')`,
+		},
+		{
+			Value: "com-.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("com-") of domain-authority ("com-.example") of nsid ("com-.example.abc") cannot end with hyphen ('-')`,
+		},
+		{
+			Value: "com.-.abc",
+			Expected: `nsid: nsid domain-authority part №1 ("-") of domain-authority ("com.-") of nsid ("com.-.abc") cannot begin with hyphen ('-')`,
+		},
+		{
+			Value: "com.-example.abc",
+			Expected: `nsid: nsid domain-authority part №1 ("-example") of domain-authority ("com.-example") of nsid ("com.-example.abc") cannot begin with hyphen ('-')`,
+		},
+		{
+			Value: "com.example-.abc",
+			Expected: `nsid: nsid domain-authority part №1 ("example-") of domain-authority ("com.example-") of nsid ("com.example-.abc") cannot end with hyphen ('-')`,
+		},
+
+
+
+		{
+			Value: "0.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("0") of domain-authority ("0.example") of nsid ("0.example.abc") cannot begin with numerical-digit`,
+		},
+		{
+			Value: "1.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("1") of domain-authority ("1.example") of nsid ("1.example.abc") cannot begin with numerical-digit`,
+		},
+		{
+			Value: "2.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("2") of domain-authority ("2.example") of nsid ("2.example.abc") cannot begin with numerical-digit`,
+		},
+		{
+			Value: "3.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("3") of domain-authority ("3.example") of nsid ("3.example.abc") cannot begin with numerical-digit`,
+		},
+		{
+			Value: "4.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("4") of domain-authority ("4.example") of nsid ("4.example.abc") cannot begin with numerical-digit`,
+		},
+		{
+			Value: "5.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("5") of domain-authority ("5.example") of nsid ("5.example.abc") cannot begin with numerical-digit`,
+		},
+		{
+			Value: "6.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("6") of domain-authority ("6.example") of nsid ("6.example.abc") cannot begin with numerical-digit`,
+		},
+		{
+			Value: "7.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("7") of domain-authority ("7.example") of nsid ("7.example.abc") cannot begin with numerical-digit`,
+		},
+		{
+			Value: "8.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("8") of domain-authority ("8.example") of nsid ("8.example.abc") cannot begin with numerical-digit`,
+		},
+		{
+			Value: "9.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("9") of domain-authority ("9.example") of nsid ("9.example.abc") cannot begin with numerical-digit`,
+		},
+
+
+
+		{
+			Value: "0om.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("0om") of domain-authority ("0om.example") of nsid ("0om.example.abc") cannot begin with numerical-digit`,
+		},
+		{
+			Value: "1om.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("1om") of domain-authority ("1om.example") of nsid ("1om.example.abc") cannot begin with numerical-digit`,
+		},
+		{
+			Value: "2om.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("2om") of domain-authority ("2om.example") of nsid ("2om.example.abc") cannot begin with numerical-digit`,
+		},
+		{
+			Value: "3om.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("3om") of domain-authority ("3om.example") of nsid ("3om.example.abc") cannot begin with numerical-digit`,
+		},
+		{
+			Value: "4om.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("4om") of domain-authority ("4om.example") of nsid ("4om.example.abc") cannot begin with numerical-digit`,
+		},
+		{
+			Value: "5om.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("5om") of domain-authority ("5om.example") of nsid ("5om.example.abc") cannot begin with numerical-digit`,
+		},
+		{
+			Value: "6om.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("6om") of domain-authority ("6om.example") of nsid ("6om.example.abc") cannot begin with numerical-digit`,
+		},
+		{
+			Value: "7om.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("7om") of domain-authority ("7om.example") of nsid ("7om.example.abc") cannot begin with numerical-digit`,
+		},
+		{
+			Value: "8om.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("8om") of domain-authority ("8om.example") of nsid ("8om.example.abc") cannot begin with numerical-digit`,
+		},
+		{
+			Value: "9om.example.abc",
+			Expected: `nsid: nsid domain-authority part №0 ("9om") of domain-authority ("9om.example") of nsid ("9om.example.abc") cannot begin with numerical-digit`,
+		},
+
+
+
+		{
 			Value: "com.example.",
 			Expected: `nsid: nsid name ("") of nsid ("com.example.") is less-than 1 character`,
 		},

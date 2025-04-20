@@ -41,6 +41,29 @@ func TestSplit(t *testing.T) {
 			ExpectedDomainAuthority: "apple.banana.cherry",
 			ExpectedName:                                "date",
 		},
+
+
+
+		{
+			Value:                   "ApPlE",
+			ExpectedDomainAuthority: "apple",
+			ExpectedName:                  "",
+		},
+		{
+			Value:                   "aPpLe.BaNaNa",
+			ExpectedDomainAuthority: "apple.banana",
+			ExpectedName:                         "",
+		},
+		{
+			Value:                   "ApPlE.bAnAnA.cHeRrY",
+			ExpectedDomainAuthority: "apple.banana",
+			ExpectedName:                         "cHeRrY",
+		},
+		{
+			Value:                   "aPpLe.BaNaNa.ChErRy.DaTe",
+			ExpectedDomainAuthority: "apple.banana.cherry",
+			ExpectedName:                                "DaTe",
+		},
 	}
 
 	for testNumber, test := range tests {

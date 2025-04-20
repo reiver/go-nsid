@@ -93,87 +93,116 @@ func TestValidate(t *testing.T) {
 
 
 		{
+			Value: "com.example.",
+			Expected: `nsid: nsid name ("") of nsid ("com.example.") is less-than 1 character`,
+		},
+		{
+			Value: "com.example.abcdefghijklmnopqrstuvwxyz012345ABCDEFGHIJKLMNOPQRSTUVWXYZ543210",
+			Expected: `nsid: nsid name ("abcdefghijklmnopqrstuvwxyz012345ABCDEFGHIJKLMNOPQRSTUVWXYZ543210") of nsid ("com.example.abcdefghijklmnopqrstuvwxyz012345ABCDEFGHIJKLMNOPQRSTUVWXYZ543210") is greater-than 63 character`,
+		},
+
+
+
+		{
+			Value: "com.example.🙂",
+			Expected: `nsid: character №12 ('🙂') (U+1F642) of nsid ("com.example.🙂") is not an ASCII character`,
+		},
+		{
+			Value: "com.example.a🙂c",
+			Expected: `nsid: character №13 ('🙂') (U+1F642) of nsid ("com.example.a🙂c") is not an ASCII character`,
+		},
+
+
+
+		{
+			Value: "com.example.ED7BA470-8E54-465E-825C-99712043E01C",
+			Expected: `nsid: character №8 ('-') (U+002D) of name ("ED7BA470-8E54-465E-825C-99712043E01C") of nsid ("com.example.ED7BA470-8E54-465E-825C-99712043E01C") cannot be a hyphen but must instead be an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z'), or digits ('0'-'9')`,
+		},
+
+
+
+		{
 			Value: "com.example.0",
-			Expected: `nsid: character №0 ('0') (U+0030) of name ("0") of nsid ("com.example.0") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("0") of nsid ("com.example.0") cannot be a digit ('0'-'9')`,
 		},
 		{
 			Value: "com.example.1",
-			Expected: `nsid: character №0 ('1') (U+0031) of name ("1") of nsid ("com.example.1") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("1") of nsid ("com.example.1") cannot be a digit ('0'-'9')`,
 		},
 		{
 			Value: "com.example.2",
-			Expected: `nsid: character №0 ('2') (U+0032) of name ("2") of nsid ("com.example.2") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("2") of nsid ("com.example.2") cannot be a digit ('0'-'9')`,
 		},
 		{
 			Value: "com.example.3",
-			Expected: `nsid: character №0 ('3') (U+0033) of name ("3") of nsid ("com.example.3") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("3") of nsid ("com.example.3") cannot be a digit ('0'-'9')`,
 		},
 		{
 			Value: "com.example.4",
-			Expected: `nsid: character №0 ('4') (U+0034) of name ("4") of nsid ("com.example.4") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("4") of nsid ("com.example.4") cannot be a digit ('0'-'9')`,
 		},
 		{
 			Value: "com.example.5",
-			Expected: `nsid: character №0 ('5') (U+0035) of name ("5") of nsid ("com.example.5") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("5") of nsid ("com.example.5") cannot be a digit ('0'-'9')`,
 		},
 		{
 			Value: "com.example.6",
-			Expected: `nsid: character №0 ('6') (U+0036) of name ("6") of nsid ("com.example.6") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("6") of nsid ("com.example.6") cannot be a digit ('0'-'9')`,
 		},
 		{
 			Value: "com.example.7",
-			Expected: `nsid: character №0 ('7') (U+0037) of name ("7") of nsid ("com.example.7") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("7") of nsid ("com.example.7") cannot be a digit ('0'-'9')`,
 		},
 		{
 			Value: "com.example.8",
-			Expected: `nsid: character №0 ('8') (U+0038) of name ("8") of nsid ("com.example.8") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("8") of nsid ("com.example.8") cannot be a digit ('0'-'9')`,
 		},
 		{
 			Value: "com.example.9",
-			Expected: `nsid: character №0 ('9') (U+0039) of name ("9") of nsid ("com.example.9") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("9") of nsid ("com.example.9") cannot be a digit ('0'-'9')`,
 		},
 
 
 
 		{
 			Value: "com.example.0xDEADBEEF",
-			Expected: `nsid: character №0 ('0') (U+0030) of name ("0xDEADBEEF") of nsid ("com.example.0xDEADBEEF") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("0xDEADBEEF") of nsid ("com.example.0xDEADBEEF") cannot be a digit ('0'-'9')`,
 		},
 		{
 			Value: "com.example.123",
-			Expected: `nsid: character №0 ('1') (U+0031) of name ("123") of nsid ("com.example.123") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("123") of nsid ("com.example.123") cannot be a digit ('0'-'9')`,
 		},
 		{
 			Value: "com.example.2b",
-			Expected: `nsid: character №0 ('2') (U+0032) of name ("2b") of nsid ("com.example.2b") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("2b") of nsid ("com.example.2b") cannot be a digit ('0'-'9')`,
 		},
 		{
 			Value: "com.example.3three",
-			Expected: `nsid: character №0 ('3') (U+0033) of name ("3three") of nsid ("com.example.3three") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("3three") of nsid ("com.example.3three") cannot be a digit ('0'-'9')`,
 		},
 		{
 			Value: "com.example.4our",
-			Expected: `nsid: character №0 ('4') (U+0034) of name ("4our") of nsid ("com.example.4our") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("4our") of nsid ("com.example.4our") cannot be a digit ('0'-'9')`,
 		},
 		{
 			Value: "com.example.5ive",
-			Expected: `nsid: character №0 ('5') (U+0035) of name ("5ive") of nsid ("com.example.5ive") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("5ive") of nsid ("com.example.5ive") cannot be a digit ('0'-'9')`,
 		},
 		{
 			Value: "com.example.6ix",
-			Expected: `nsid: character №0 ('6') (U+0036) of name ("6ix") of nsid ("com.example.6ix") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("6ix") of nsid ("com.example.6ix") cannot be a digit ('0'-'9')`,
 		},
 		{
 			Value: "com.example.7even",
-			Expected: `nsid: character №0 ('7') (U+0037) of name ("7even") of nsid ("com.example.7even") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("7even") of nsid ("com.example.7even") cannot be a digit ('0'-'9')`,
 		},
 		{
 			Value: "com.example.8ight",
-			Expected: `nsid: character №0 ('8') (U+0038) of name ("8ight") of nsid ("com.example.8ight") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("8ight") of nsid ("com.example.8ight") cannot be a digit ('0'-'9')`,
 		},
 		{
 			Value: "com.example.9876543210",
-			Expected: `nsid: character №0 ('9') (U+0039) of name ("9876543210") of nsid ("com.example.9876543210") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("9876543210") of nsid ("com.example.9876543210") cannot be a digit ('0'-'9')`,
 		},
 	}
 

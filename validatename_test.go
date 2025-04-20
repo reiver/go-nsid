@@ -28,6 +28,18 @@ func TestValidateName(t *testing.T) {
 		{
 			Name: "thing",
 		},
+		{
+			Name: "a1",
+		},
+		{
+			Name: "b2",
+		},
+		{
+			Name: "c3",
+		},
+		{
+			Name: "a1b2c3",
+		},
 
 
 
@@ -276,24 +288,24 @@ func TestValidateName_fail(t *testing.T) {
 
 
 		{
-			Name: "ping14",
+			Name: "14ping",
 			DomainAuthority:"net.users.bob",
-			Expected: `nsid: character №4 ('1') (U+0031) of name ("ping14") of nsid ("net.users.bob.ping14") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: the first character (i.e., character №0) of nsid name ("14ping") of nsid ("net.users.bob.14ping") cannot be a digit ('0'-'9')`,
 		},
 		{
 			Name: "c-1",
 			DomainAuthority:"a-0.b-1",
-			Expected: `nsid: character №1 ('-') (U+002D) of name ("c-1") of nsid ("a-0.b-1.c-1") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: character №1 ('-') (U+002D) of name ("c-1") of nsid ("a-0.b-1.c-1") cannot be a hyphen but must instead be an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z'), or digits ('0'-'9')`,
 		},
 		{
 			Name: "stuff.txt",
 			DomainAuthority:"a.b",
-			Expected: `nsid: character №5 ('.') (U+002E) of name ("stuff.txt") of nsid ("a.b.stuff.txt") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: character №5 ('.') (U+002E) of name ("stuff.txt") of nsid ("a.b.stuff.txt") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z'), or digits ('0'-'9')`,
 		},
 		{
 			Name: "thing[2]",
 			DomainAuthority:"cn.8.lex",
-			Expected: `nsid: character №5 ('[') (U+005B) of name ("thing[2]") of nsid ("cn.8.lex.thing[2]") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z')`,
+			Expected: `nsid: character №5 ('[') (U+005B) of name ("thing[2]") of nsid ("cn.8.lex.thing[2]") is not an upper-case letter ('A'-'Z'), or lower-case letter ('a'-'z'), or digits ('0'-'9')`,
 		},
 
 

@@ -1,22 +1,14 @@
 package nsid
 
-import (
-	"strings"
-)
-
 // NSID represents a NSID (Namespaced Identifier) that is part of BlueSky's AT-Protocol.
 type NSID string
 
 // ConstructNSID creates an NSID (Namespaced Identifier) that is part of BlueSky's AT-Protocol.
 func ConstructNSID(values ...string) (NSID, error) {
-	str := strings.Join(values, ".")
-	var value NSID = NSID(str)
+	nsIDString := Construct(values...)
+	var nsID NSID = NSID(nsIDString)
 
-	err := value.Validate()
-
-	value = NSID(Normalize(string(value)))
-
-	return value, err
+	return nsID, Validate(nsIDString)
 }
 
 // MustConstructNSID is similar to [ConstructNSID] expect it panic()s if thre is an error.

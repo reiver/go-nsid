@@ -13,7 +13,7 @@ Online documentation, which includes examples, can be found at: http://godoc.org
 
 ## Examples
 
-Split an NSID into its _domain-authority_ and _name_:
+To split an NSID into its _domain-authority_ and _name_:
 
 ```golang
 import "github.com/reiver/go-nsid"
@@ -27,7 +27,7 @@ domainAuthority, name := nsid.Split("com.example.fooBar")
 
 ```
 
-Normalize an NSID into its _domain-authority_ and _name_:
+To normalize an NSID:
 
 ```golang
 import "github.com/reiver/go-nsid"
@@ -39,7 +39,7 @@ value := nsid.Normalize("COM.Example.fooBar")
 // value == "com.example.fooBar"
 ```
 
-Validate an NSID:
+To validate an NSID:
 
 ```golang
 import "github.com/reiver/go-nsid"
@@ -57,6 +57,7 @@ if nil != err {
 ## Import
 
 To import package **nsid** use `import` code like the follownig:
+
 ```
 import "github.com/reiver/go-nsid"
 ```
@@ -64,6 +65,7 @@ import "github.com/reiver/go-nsid"
 ## Installation
 
 To install package **nsid** do the following:
+
 ```
 GOPROXY=direct go get https://github.com/reiver/go-nsid
 ```

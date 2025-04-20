@@ -8,11 +8,12 @@ import (
 //
 // Join more-or-less does the opposite of [Split].
 //
-// Join will normalize the domain-authority and will also validate the overall resulting NSID.
-// Join will return an error if the resulting NSID fails validation.
-func Join(domainAuthority string, name string) (string, error) {
+// Join will normalize the domain-authority.
+//
+// Join does not validate the overall resulting NSID.
+// To validate the overall resulting NSID call [Validate].
+func Join(domainAuthority string, name string) string {
 	str := fmt.Sprintf("%s.%s", domainAuthority, name)
-	normalized := Normalize(str)
-        return normalized, Validate(normalized)
+	return Normalize(str)
 }
 

@@ -11,11 +11,7 @@ func ExampleJoin() {
 	var domainAuthority string = "com.example"
 	var name string            = "fooBar"
 
-	nsID, err := nsid.Join(domainAuthority, name)
-	if nil != err {
-		fmt.Printf("ERROR: problem creating NSID: %s\n", err)
-		return
-	}
+	nsID := nsid.Join(domainAuthority, name)
 
 	fmt.Printf("domain-authority: %s\n", domainAuthority)
 	fmt.Printf("name:                         %s\n", name)

@@ -4,10 +4,10 @@ import (
 	"strings"
 )
 
-// NSID represents a NSID.
+// NSID represents a NSID (Namespaced Identifier) that is part of BlueSky's AT-Protocol.
 type NSID string
 
-// ConstructNSID creates an NSID.
+// ConstructNSID creates an NSID (Namespaced Identifier) that is part of BlueSky's AT-Protocol.
 func ConstructNSID(values ...string) (NSID, error) {
 	str := strings.Join(values, ".")
 	var value NSID = NSID(str)
@@ -19,7 +19,7 @@ func ConstructNSID(values ...string) (NSID, error) {
 	return value, err
 }
 
-// MustConstructNSID is similar to ConstructNSID expect it panic()s if thre is an error.
+// MustConstructNSID is similar to [ConstructNSID] expect it panic()s if thre is an error.
 func MustConstructNSID(values ...string) NSID {
 	value, err := ConstructNSID(values...)
 	if nil != err {

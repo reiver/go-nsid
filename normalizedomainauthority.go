@@ -3,26 +3,13 @@ package nsid
 // NormalizeDomainAuthority returns the normalized form of an domain-authority, as defined in:
 // https://atproto.com/specs/nsid
 //
-// The domain-authority is part of an NSID.
+// The domain-authority (such as "com.example") is part of an NSID (such as "com.example.fooBar").
 //
-// For example, if the NSID was:
+// In simple language, you can think of an NSID domain-authority as an Internet domain-name written in reverse-order.
+// For example, if the Internet domain-name was "example.com", then the NSID domain-authority would be "com.example".
 //
-//	ONCE.TWICE.THRICE.FOURCE
-//
-// Then the domain-authority would be:
-//
-//	ONCE.TWICE.THRICE
-//
-// And then the normalized form of the domain-authority would be:
-//
-//	once.twice.thrice
-//
-// So, for example::
-//
-//	var domainAuthority string = "ONCE.TWICE.THRICE"
-//
-//	var result string = nsid.NormalizeDomainAuthority(domainAuthority)
-//	// result == "once.twice.thrice"
+// An example of a non-normalized NSID domain-authority would be "COM.Example".
+// Normalizing that non-normalized NSID domain-authority would result in "com.example".
 func NormalizeDomainAuthority(value string) string {
 	const lenbuffer int = 256
 	var buffer [lenbuffer]byte

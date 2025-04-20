@@ -12,6 +12,7 @@ import (
 // Join will return an error if the resulting NSID fails validation.
 func Join(domainAuthority string, name string) (string, error) {
 	str := fmt.Sprintf("%s.%s", domainAuthority, name)
-        return Normalize(str), Validate(str)
+	normalized := Normalize(str)
+        return normalized, Validate(normalized)
 }
 

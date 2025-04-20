@@ -116,6 +116,18 @@ func TestValidate(t *testing.T) {
 			Value: "com.example-.abc",
 			Expected: `nsid: nsid domain-authority part №1 ("example-") of domain-authority ("com.example-") of nsid ("com.example-.abc") cannot end with hyphen ('-')`,
 		},
+		{
+			Value: "once.twice.-.fource",
+			Expected: `nsid: nsid domain-authority part №2 ("-") of domain-authority ("once.twice.-") of nsid ("once.twice.-.fource") cannot begin with hyphen ('-')`,
+		},
+		{
+			Value: "once.twice.-thrice.fource",
+			Expected: `nsid: nsid domain-authority part №2 ("-thrice") of domain-authority ("once.twice.-thrice") of nsid ("once.twice.-thrice.fource") cannot begin with hyphen ('-')`,
+		},
+		{
+			Value: "once.twice.thrice-.fource",
+			Expected: `nsid: nsid domain-authority part №2 ("thrice-") of domain-authority ("once.twice.thrice-") of nsid ("once.twice.thrice-.fource") cannot end with hyphen ('-')`,
+		},
 
 
 

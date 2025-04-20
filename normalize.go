@@ -4,10 +4,14 @@ import (
 	"strings"
 )
 
-// Normalize returns the normalized form of an NSID.
+// Normalize returns the normalized form of an NSID, as defined in:
+// https://atproto.com/specs/nsid
 //
 // Normalize does NOT validate the NSID.
 // To validate, call [Validate].
+//
+// An example of a non-normalized NSID domain-authority would be "COM.Example.fooBar".
+// Normalizing that non-normalized NSID domain-authority would result in "com.example.fooBar".
 func Normalize(value string) string {
 
 	var name string

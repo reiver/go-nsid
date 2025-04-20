@@ -4,7 +4,7 @@ package nsid
 //
 // Join more-or-less does the opposite of [Split].
 //
-// Join will normalize the domain-authority.
+// Note that the NSID that Join returns is normalized.
 //
 // Join does not validate the overall resulting NSID.
 // To validate the overall resulting NSID call [Validate].

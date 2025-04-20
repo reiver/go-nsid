@@ -91,6 +91,50 @@ func TestValidate(t *testing.T) {
 		},
 
 
+		{
+			Value: "abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba.x",
+			Expected: `nsid: nsid domain-authority ("abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba") of nsid ("abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba.x") character count is 254 characters but should not be greater-than 253 characters`,
+		},
+		{
+			Value: "abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.x",
+			Expected: `nsid: nsid domain-authority ("abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7") of nsid ("abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.x") character count is 255 characters but should not be greater-than 253 characters`,
+		},
+
+
+
+		{
+			Value: ".banana.cherry.date",
+			Expected: `nsid: nsid domain-authority part №0 ("") of domain-authority (".banana.cherry") of nsid (".banana.cherry.date") is less-than 1 character`,
+		},
+		{
+			Value: "apple..cherry.date",
+			Expected: `nsid: nsid domain-authority part №1 ("") of domain-authority ("apple..cherry") of nsid ("apple..cherry.date") is less-than 1 character`,
+		},
+		{
+			Value: "apple.banana..date",
+			Expected: `nsid: nsid domain-authority part №2 ("") of domain-authority ("apple.banana.") of nsid ("apple.banana..date") is less-than 1 character`,
+		},
+
+
+
+		{
+			Value: "abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba76.banana.cherry.date",
+			Expected: `nsid: nsid domain-authority part №0 ("abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba76") of domain-authority ("abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba76.banana.cherry") of nsid ("abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba76.banana.cherry.date") is greater-than 63 characters`,
+		},
+		{
+			Value: "apple.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba76.cherry.date",
+			Expected: `nsid: nsid domain-authority part №1 ("abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba76") of domain-authority ("apple.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba76.cherry") of nsid ("apple.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba76.cherry.date") is greater-than 63 characters`,
+		},
+		{
+			Value: "apple.banana.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba76.date",
+			Expected: `nsid: nsid domain-authority part №2 ("abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba76") of domain-authority ("apple.banana.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba76") of nsid ("apple.banana.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba76.date") is greater-than 63 characters`,
+		},
+		{
+			Value: "apple.banana.cherry.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba76",
+			Expected: `nsid: nsid name ("abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba76") of nsid ("apple.banana.cherry.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba76") is greater-than 63 character`,
+		},
+
+
 
 		{
 			Value: "-.example.abc",
@@ -334,6 +378,11 @@ func TestValidate(t *testing.T) {
 	for testNumber, test := range tests {
 
 		actualError := nsid.Validate(test.Value)
+		if nil == actualError {
+			t.Errorf("For test #%d, expected an error but did not actually get one.", testNumber)
+			t.Logf("VALUE: (%d) %q", len(test.Value), test.Value)
+			continue
+		}
 
 		actual := actualError.Error()
 		expected := test.Expected
@@ -342,8 +391,59 @@ func TestValidate(t *testing.T) {
 			t.Errorf("For test #%d, the actual error message is not what was expected.", testNumber)
 			t.Logf("EXPECTED: %s", expected)
 			t.Logf("ACTUAL:   %s", actual)
-			t.Logf("VALUE: %q", test.Value)
+			t.Logf("VALUE: (%d) %q", len(test.Value), test.Value)
 			continue
+		}
+	}
+}
+
+func TestValidate_ok(t *testing.T) {
+
+	tests := []struct{
+		Value string
+	}{
+		{
+			Value: "com.example.apple",
+		},
+		{
+			Value: "com.example.BANANA",
+		},
+		{
+			Value: "com.example.Cherry",
+		},
+		{
+			Value: "com.example.dAtE",
+		},
+
+
+
+		{
+			Value: "a-1.b-2.c3",
+		},
+		{
+			Value: "a-1.b-2.c-3.d4",
+		},
+		{
+			Value: "a-1.b-2.c-3.d-4.e5",
+		},
+		{
+			Value: "com.example.ed7ba470-8e54-465e-825c-99712043e01c.wow",
+		},
+
+
+
+		{
+			Value: "abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcba7.abcdefghijklmnopqrstuvwxyz0123456789zyxwvutsrqponmlkjihgfedcb",
+		},
+	}
+
+	for testNumber, test := range tests {
+
+		err := nsid.Validate(test.Value)
+		if nil != err {
+			t.Errorf("For test #%d, did not expect an error but actually got one.", testNumber)
+			t.Logf("ERROR: %s", err)
+			t.Logf("VALUE: (%d) %q", len(test.Value), test.Value)
 		}
 	}
 }

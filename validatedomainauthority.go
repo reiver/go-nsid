@@ -43,7 +43,7 @@ func validateDomainAuthority(domainAuthorityParts []string, nsidString string) e
 			return erorr.Errorf("nsid: nsid domain-authority part №%d (%q) of domain-authority (%q) of nsid (%q) is less-than 1 character", i, part, domainAuthorityString, nsidString)
 		}
 		if 63 < length {
-			return erorr.Errorf("nsid: nsid domain-authority part №%d (%q) of domain-authority (%q) of nsid (%q) is greater-than 63 character", i, part, domainAuthorityString, nsidString)
+			return erorr.Errorf("nsid: nsid domain-authority part №%d (%q) of domain-authority (%q) of nsid (%q) is greater-than 63 characters", i, part, domainAuthorityString, nsidString)
 		}
 
 		for charIndex, char := range part {

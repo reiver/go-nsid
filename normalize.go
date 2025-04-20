@@ -13,7 +13,7 @@ func Normalize(value string) string {
 
 	domainAuthority, name := val.Split()
 
-	domainAuthority = strings.ToLower(domainAuthority)
+	domainAuthority = NormalizeDomainAuthority(domainAuthority)
 
 	var str string = strings.Join([]string{domainAuthority, name}, ".")
 

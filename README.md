@@ -11,6 +11,45 @@ Online documentation, which includes examples, can be found at: http://godoc.org
 
 [![GoDoc](https://godoc.org/github.com/reiver/go-nsid?status.svg)](https://godoc.org/github.com/reiver/go-nsid)
 
+## NSID
+
+In plain language, an NSID (Namespaced Identifier) is a combination of **Internet domain-name** and a **name**.
+
+### NSID Example 1
+
+For example, if the **Internet domain-name** was:
+
+	example.com
+
+And the **name** was:
+
+	fooBar
+
+Then the resulting NSID (Namespaced Identifier) would be:
+
+	com.example.fooBar
+
+Note that the **Internet domain-name** (`example.com`) was written in reverse-order (`com.example`) before constructing the NSID (Namespaced Identifier).
+
+### NSID Example 2
+
+Here is another example.
+If the **Internet domain-name** was:
+
+	video.archive.org
+
+Note that we are using a sub-domain of `example.com` here.
+
+And if the **name** was:
+
+	clipVideo
+
+Then the resulting NSID (Namespaced Identifier) would be:
+
+	org.archive.video.clipVideo
+
+Again note that the **Internet domain-name** (`video.archive.org`) was written in reverse-order (`org.archive.video`) before constructing the NSID (Namespaced Identifier).
+
 ## Examples
 
 To split an NSID into its _domain-authority_ and _name_:

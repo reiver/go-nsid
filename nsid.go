@@ -35,13 +35,11 @@ func (receiver NSID) Name() string {
 
 // Split returns the domain-authority and name of an NSID.
 func (receiver NSID) Split() (domainAuthority string, name string) {
-	var str string = string(receiver)
-	return Split(str)
+	return Split(string(receiver))
 }
 
 // Validate returns an error if the NSID is invalid.
 // It returns nil if the NSID is valid.
 func (receiver NSID) Validate() error {
-	var str string = string(receiver)
-	return Validate(str)
+	return Validate(string(receiver))
 }

@@ -13,8 +13,10 @@ import (
 //
 // Construct allows the domain-authority to be broken into parts.
 //
-// Note that the NSID that Construct returns is normalized.
+// Note that the NSID that Construct returns is NOT normalized.
+// Use [ConstructAndNormalize] to create a normalized NSID.
+//
+// If you are not sure whether to use Construct or [ConstructAndNormalize], use [ConstructAndNormalize].
 func Construct(values ...string) string {
-	var nsID string = strings.Join(values, ".")
-	return Normalize(nsID)
+	return strings.Join(values, ".")
 }

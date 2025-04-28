@@ -7,13 +7,15 @@ import (
 // Split returns the domain-authority and name of an NSID, as defined here:
 // https://atproto.com/specs/nsid
 //
-// Split normalizes the domain-authority of the NSID that it returns.
+// Split does NOT normalizes the domain-authority of the NSID that it returns.
+// Use [SplitAndNormalize] to have the domain-authority normalized.
+//
+// If you are not sure whether to use Split or [SpliAndNormalize], use [SplitAndNormalize].
 func Split(value string) (domainAuthority string, name string) {
 	var domainAuthorityParts []string
 	domainAuthorityParts, name, _ = split(value)
 
 	domainAuthority = strings.Join(domainAuthorityParts, ".")
-	domainAuthority = NormalizeDomainAuthority(domainAuthority)
 
 	return domainAuthority, name
 }

@@ -6,7 +6,7 @@ import (
 	"github.com/reiver/go-nsid"
 )
 
-func TestSplit(t *testing.T) {
+func TestSplitAndNormalize(t *testing.T) {
 
 	tests := []struct{
 		Value string
@@ -46,29 +46,29 @@ func TestSplit(t *testing.T) {
 
 		{
 			Value:                   "ApPlE",
-			ExpectedDomainAuthority: "ApPlE",
+			ExpectedDomainAuthority: "apple",
 			ExpectedName:                  "",
 		},
 		{
 			Value:                   "aPpLe.BaNaNa",
-			ExpectedDomainAuthority: "aPpLe.BaNaNa",
+			ExpectedDomainAuthority: "apple.banana",
 			ExpectedName:                         "",
 		},
 		{
 			Value:                   "ApPlE.bAnAnA.cHeRrY",
-			ExpectedDomainAuthority: "ApPlE.bAnAnA",
+			ExpectedDomainAuthority: "apple.banana",
 			ExpectedName:                         "cHeRrY",
 		},
 		{
 			Value:                   "aPpLe.BaNaNa.ChErRy.DaTe",
-			ExpectedDomainAuthority: "aPpLe.BaNaNa.ChErRy",
+			ExpectedDomainAuthority: "apple.banana.cherry",
 			ExpectedName:                                "DaTe",
 		},
 	}
 
 	for testNumber, test := range tests {
 
-		actualDomainAuthority, actualName := nsid.Split(test.Value)
+		actualDomainAuthority, actualName := nsid.SplitAndNormalize(test.Value)
 
 		{
 			actual := actualDomainAuthority

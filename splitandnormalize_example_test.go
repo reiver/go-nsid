@@ -6,11 +6,11 @@ import (
 	"github.com/reiver/go-nsid"
 )
 
-func ExampleSplit() {
+func ExampleSplitAndNormalize() {
 
 	var nsID string = "COM.Example.fooBar"
 
-	domainAuthority, name := nsid.Split(nsID)
+	domainAuthority, name := nsid.SplitAndNormalize(nsID)
 
 	fmt.Printf("nsid:             %s\n", nsID)
 	fmt.Printf("domain-authority: %s\n", domainAuthority)
@@ -18,6 +18,6 @@ func ExampleSplit() {
 
 	// Output:
 	// nsid:             COM.Example.fooBar
-	// domain-authority: COM.Example
+	// domain-authority: com.example
 	// name:                         fooBar
 }

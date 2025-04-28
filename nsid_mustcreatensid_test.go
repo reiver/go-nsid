@@ -6,7 +6,7 @@ import (
 	"github.com/reiver/go-nsid"
 )
 
-func TestMustConstructNSID(t *testing.T) {
+func TestMustCreateNSID(t *testing.T) {
 	tests := []struct{
 		Parts []string
 		Expected string
@@ -33,7 +33,7 @@ func TestMustConstructNSID(t *testing.T) {
 	}
 
 	for testNumber, test := range tests {
-		actual := nsid.MustConstructNSID(test.Parts...)
+		actual := nsid.MustCreateNSID(test.Parts...)
 
 		expectedString := test.Expected
 		expected := nsid.NSID(expectedString)

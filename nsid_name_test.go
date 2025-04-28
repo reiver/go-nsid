@@ -12,23 +12,23 @@ func TestNSID_Name(t *testing.T) {
 		Expected string
 	}{
 		{
-			NSID: nsid.MustConstructNSID([]string{"com","example", "name"}...),
-			Expected:                                              "name",
+			NSID: nsid.MustCreateNSID([]string{"com","example", "name"}...),
+			Expected:                                           "name",
 		},
 		{
-			NSID: nsid.MustConstructNSID([]string{"com.example", "name"}...),
-			Expected:                                            "name",
-		},
-		{
-			NSID: nsid.MustConstructNSID([]string{"com.example.name"}...),
+			NSID: nsid.MustCreateNSID([]string{"com.example", "name"}...),
 			Expected:                                         "name",
 		},
+		{
+			NSID: nsid.MustCreateNSID([]string{"com.example.name"}...),
+			Expected:                                      "name",
+		},
 
 
 
 		{
-			NSID: nsid.MustConstructNSID([]string{"once.twice.thrice.fource"}...),
-			Expected:                                               "fource",
+			NSID: nsid.MustCreateNSID([]string{"once.twice.thrice.fource"}...),
+			Expected:                                            "fource",
 		},
 	}
 

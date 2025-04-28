@@ -12,23 +12,23 @@ func TestNSID_DomainAuthority(t *testing.T) {
 		Expected string
 	}{
 		{
-			NSID: nsid.MustConstructNSID([]string{"com","example", "name"}...),
-			Expected:                             "com.example",
+			NSID: nsid.MustCreateNSID([]string{"com","example", "name"}...),
+			Expected:                      "com.example",
 		},
 		{
-			NSID: nsid.MustConstructNSID([]string{"com.example", "name"}...),
-			Expected:                             "com.example",
+			NSID: nsid.MustCreateNSID([]string{"com.example", "name"}...),
+			Expected:                      "com.example",
 		},
 		{
-			NSID: nsid.MustConstructNSID([]string{"com.example.name"}...),
-			Expected:                             "com.example",
+			NSID: nsid.MustCreateNSID([]string{"com.example.name"}...),
+			Expected:                      "com.example",
 		},
 
 
 
 		{
-			NSID: nsid.MustConstructNSID([]string{"once.twice.thrice.fource"}...),
-			Expected:                             "once.twice.thrice",
+			NSID: nsid.MustCreateNSID([]string{"once.twice.thrice.fource"}...),
+			Expected:                      "once.twice.thrice",
 		},
 	}
 

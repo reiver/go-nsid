@@ -6,7 +6,7 @@ import (
 	"github.com/reiver/go-nsid"
 )
 
-func TestJoin(t *testing.T) {
+func TestJoinAndNormalize(t *testing.T) {
 
 	tests := []struct{
 		DomainAuthority string
@@ -29,7 +29,7 @@ func TestJoin(t *testing.T) {
 		{
 			DomainAuthority: "COM.Example",
 			Name:                        "fooBar",
-			Expected:        "COM.Example.fooBar",
+			Expected:        "com.example.fooBar",
 		},
 
 
@@ -42,13 +42,13 @@ func TestJoin(t *testing.T) {
 		{
 			DomainAuthority: "Org.Archive.VIDEO",
 			Name:                              "clipVideo",
-			Expected:        "Org.Archive.VIDEO.clipVideo",
+			Expected:        "org.archive.video.clipVideo",
 		},
 	}
 
 	for testNumber, test := range tests {
 
-		actual := nsid.Join(test.DomainAuthority, test.Name)
+		actual := nsid.JoinAndNormalize(test.DomainAuthority, test.Name)
 
 		expected := test.Expected
 

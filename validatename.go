@@ -28,9 +28,9 @@ func validateName(name string, nsidString string) error {
 		}
 	}
 
-	// "Name:" "the allowed characters are ASCII letters only (A-Z, a-z)"
+	// "Name:" "the allowed characters are ASCII letters and digits only (A-Z, a-z, 0-9)"
 	//
-	// "Name:" "digits and hyphens are not allowed"
+	// "Name:" "hyphens are not allowed"
 	{
 		for charIndex, char := range name {
 			switch {

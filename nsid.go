@@ -39,7 +39,7 @@ func (receiver NSID) DomainAuthority() string {
 	return value
 }
 
-// Name returns the domain-authority of an NSID.
+// Name returns the name of an NSID.
 //
 // The NSID (Namespaced Identifier) is part of BlueSky's AT-Protocol, as defined here:
 // https://atproto.com/specs/nsid
